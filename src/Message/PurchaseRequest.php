@@ -190,7 +190,7 @@ class PurchaseRequest extends AbstractRequest
         $iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($cipher), MCRYPT_DEV_URANDOM);
 
         mcrypt_generic_init($cipher, $key, $iv);
-        $sign = mcrypt_generic($cipher, pack('H*', $hexSha1_16));
+        $sign = mcrypt_generic($cipher, pack('H*', $string));
         mcrypt_generic_deinit($cipher);
 
         return strtoupper(bin2hex($sign));
