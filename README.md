@@ -1,8 +1,7 @@
-# Omnipay: Home Credit
+# Omnipay: Besteron
 
-**Home Credit driver for the Omnipay PHP payment processing library**
+**Besteron driver for the Omnipay PHP payment processing library**
 
-[![Build Status](https://travis-ci.org/riesenia/omnipay-besteron.png?branch=master)](https://travis-ci.org/riesenia/omnipay-besteron)
 [![Latest Stable Version](https://poser.pugx.org/rshop/omnipay-besteron/version.png)](https://packagist.org/packages/rshop/omnipay-besteron)
 [![Total Downloads](https://poser.pugx.org/rshop/omnipay-besteron/d/total.png)](https://packagist.org/packages/rshop/omnipay-besteron)
 

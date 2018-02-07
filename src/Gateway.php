@@ -79,6 +79,27 @@ class Gateway extends AbstractGateway
      * @param string
      * @return $this
      */
+    public function setApiKey($value)
+    {
+        return $this->setParameter('apiKey', $value);
+    }
+
+    /**
+     * Getter
+     *
+     * @return string
+     */
+    public function getApiKey()
+    {
+        return $this->getParameter('apiKey');
+    }
+
+    /**
+     * Setter
+     *
+     * @param string
+     * @return $this
+     */
     public function setType($value)
     {
         return $this->setParameter('type', $value);
@@ -156,5 +177,16 @@ class Gateway extends AbstractGateway
     public function completePurchase(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\Besteron\Message\CompletePurchaseRequest', $parameters);
+    }
+
+    /**
+     * Create a check status request
+     *
+     * @param array $parameters
+     * @return \Omnipay\Besteron\Message\CheckStatusRequest
+     */
+    public function checkStatus(array $parameters = [])
+    {
+        return $this->createRequest('\Omnipay\Besteron\Message\CheckStatusRequest', $parameters);
     }
 }
