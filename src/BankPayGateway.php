@@ -26,14 +26,4 @@ class BankPayGateway extends Gateway
     {
         throw new \Exception('Method not supported.');
     }
-
-    /**
-     * Create a check status request
-     *
-     * @param array $parameters
-     */
-    public function checkStatus(array $parameters = [])
-    {
-        throw new \Exception('Method not supported.');
-    }
 }
