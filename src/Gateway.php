@@ -180,17 +180,6 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * Create a bank pay request
-     *
-     * @param array $parameters
-     * @return \Omnipay\Besteron\Message\BankPayRequest
-     */
-    public function bankPay(array $parameters = [])
-    {
-        return $this->createRequest('\Omnipay\Besteron\Message\BankPayRequest', $parameters);
-    }
-
-    /**
      * Create a check status request
      *
      * @param array $parameters

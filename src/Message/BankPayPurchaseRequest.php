@@ -1,12 +1,10 @@
 <?php
 namespace Omnipay\Besteron\Message;
 
-use Omnipay\Common\Exception\InvalidResponseException;
-
 /**
- * Besteron BankPay Request
+ * Besteron BankPay Purchase Request
  */
-class BankPayRequest extends PurchaseRequest
+class BankPayPurchaseRequest extends PurchaseRequest
 {
     /**
      * Get the raw data array for the message
@@ -32,7 +30,7 @@ class BankPayRequest extends PurchaseRequest
      */
     public function sendData($data)
     {
-        return $this->response = new BankPayResponse($this, $data);
+        return $this->response = new BankPayPurchaseResponse($this, $data);
     }
 
     /**
