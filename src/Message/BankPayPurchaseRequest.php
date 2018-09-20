@@ -7,19 +7,46 @@ namespace Omnipay\Besteron\Message;
 class BankPayPurchaseRequest extends PurchaseRequest
 {
     /**
+     * Setter
+     *
+     * @param string
+     * @return $this
+     */
+    public function setSs($value)
+    {
+        return $this->setParameter('ss', $value);
+    }
+
+    /**
+     * Getter
+     *
+     * @return string
+     */
+    public function getSs()
+    {
+        return $this->getParameter('ss');
+    }
+
+    /**
+     * Getter
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return 'TRANSFERPAY';
+    }
+    
+    /**
      * Get the raw data array for the message
      *
      * @return mixed
      */
     public function getData()
     {
-        $data = parent::getData();
-
-        $data['bic'] = $data['type'];
-        unset($data['type']);
-        $data['ss'] = '';
-
-        return $data;
+        return array_merge([
+            'ss' => $this->getSs()
+        ], parent::getData());
     }
 
     /**
@@ -40,7 +67,7 @@ class BankPayPurchaseRequest extends PurchaseRequest
      */
     public function getEndpoint()
     {
-        return 'https://payments.besteron.com/bank-pay-request';
+        return 'https://payments.besteron.com/pay-request';
     }
 
     /**
@@ -51,6 +78,6 @@ class BankPayPurchaseRequest extends PurchaseRequest
      */
     public function getHash()
     {
-        return $this->createHash($this->getCid() . $this->getAmount() . $this->getCurrencyNumeric() . $this->getTransactionId() . '');
+        return $this->createHash($this->getCid(). $this->getType() . $this->getAmount() . $this->getCurrencyNumeric() . $this->getTransactionId() . $this->getSs() . $this->getReturnUrl());
     }
 }
