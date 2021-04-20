@@ -7,27 +7,6 @@ namespace Omnipay\Besteron;
 class WidgetGateway extends Gateway
 {
     /**
-     * Setter
-     *
-     * @param string
-     * @return $this
-     */
-    public function setSs($value)
-    {
-        return $this->setParameter('ss', $value);
-    }
-
-    /**
-     * Getter
-     *
-     * @return string
-     */
-    public function getSs()
-    {
-        return $this->getParameter('ss');
-    }
-    
-    /**
      * Create a purchase request
      *
      * @param array $parameters
