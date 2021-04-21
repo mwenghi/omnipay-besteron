@@ -7,6 +7,28 @@ namespace Omnipay\Besteron;
 class WidgetGateway extends Gateway
 {
     /**
+     * Payment method getter.
+     *
+     * @return string
+     */
+    public function getPaymentMethod()
+    {
+        return $this->getParameter('paymentMethod');
+    }
+
+    /**
+     * Payment method setter.
+     *
+     * @param string $paymentMethod
+     *
+     * @return WidgetGateway
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        return $this->setParameter('paymentMethod', $paymentMethod);
+    }
+
+    /**
      * Create a purchase request
      *
      * @param array $parameters

@@ -17,7 +17,7 @@ class WidgetPurchaseRequest extends PurchaseRequest
         unset($data['type']);
 
         $data['language'] = $this->getLang();
-        $data['paymentmethod'] = 'CARDANDBUTTON';
+        $data['paymentmethod'] = $this->getPaymentMethod();
 
         return $data;
     }
@@ -29,7 +29,7 @@ class WidgetPurchaseRequest extends PurchaseRequest
      */
     public function getHash()
     {
-        return $this->createHash($this->getCid() . 'CARDANDBUTTON' . $this->getAmount() . $this->getCurrencyNumeric() . $this->getTransactionId() . $this->getReturnUrl());
+        return $this->createHash($this->getCid() . $this->getPaymentMethod() . $this->getAmount() . $this->getCurrencyNumeric() . $this->getTransactionId() . $this->getReturnUrl());
     }
 
     /**
