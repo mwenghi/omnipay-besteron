@@ -7,6 +7,14 @@ namespace Omnipay\Besteron\Message;
 class WidgetPurchaseResponse extends PurchaseResponse
 {
     /**
+     * {@inheritdoc}
+     */
+    public function isRedirect()
+    {
+        return false;
+    }
+
+    /**
      * Get required html.
      *
      * @return string
