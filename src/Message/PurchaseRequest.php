@@ -2,6 +2,7 @@
 namespace Omnipay\Besteron\Message;
 
 use Omnipay\Common\Message\AbstractRequest;
+use phpseclib\Crypt\Rijndael;
 
 /**
  * Besteron Purchase Request
@@ -173,7 +174,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getEndpoint()
     {
-        return $this->getTest() ? 'https://client.besteron.com/public/virtual-payment/request/' : 'https://payments.besteron.com/pay-request/';
+        return $this->getTest() ? 'https://client.besteron.com/public/virtual-payment/' : 'https://payments.besteron.com/pay-request/';
     }
 
     /**
@@ -184,15 +185,12 @@ class PurchaseRequest extends AbstractRequest
      */
     public function createHash($string)
     {
-        $key = pack('H*', $this->getKey());
+        $cipher = new Rijndael(Rijndael::MODE_ECB);
+        $cipher->setKey(pack('H*', $this->getKey()));
+        $cipher->disablePadding();
+
         $string = substr(sha1($string), 0, 32);
-        $cipher = mcrypt_module_open(MCRYPT_RIJNDAEL_128, '', MCRYPT_MODE_ECB, '');
-        $iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($cipher), MCRYPT_DEV_URANDOM);
 
-        mcrypt_generic_init($cipher, $key, $iv);
-        $sign = mcrypt_generic($cipher, pack('H*', $string));
-        mcrypt_generic_deinit($cipher);
-
-        return strtoupper(bin2hex($sign));
+        return strtoupper(bin2hex($cipher->encrypt(pack('H*', $string))));
     }
 }

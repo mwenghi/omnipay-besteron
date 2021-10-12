@@ -72,9 +72,9 @@ class CheckStatusRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        $responseData = $this->httpClient->get('https://ws.besteron.com/rest/is-payment-received', [], ['query' => $data])->send()->json();
-        $responseData['vs'] = $data['Vs'];
+        $responseData = $this->httpClient->request('GET', 'https://ws.besteron.com/rest/is-payment-received', [], json_encode($data));
+        $data = json_decode($responseData->getBody()->getContents());
 
-        return $this->response = new CheckStatusResponse($this, $responseData);
+        return $this->response = new CheckStatusResponse($this, $data);
     }
 }
