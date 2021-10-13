@@ -21,7 +21,7 @@ class WidgetPurchaseResponse extends PurchaseResponse
      */
     public function getHtml()
     {
-        return '<div class="shop-iframe" id="shop-iframe" style="width: 100%; min-height: 600px;"></div>';
+        return '<div class="shop-iframe" id="shop-iframe"></div>';
     }
 
     /**
